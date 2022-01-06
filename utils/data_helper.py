@@ -52,12 +52,13 @@ def load_graph_list(fname, is_real=True):
   with open(fname, "rb") as f:
     graph_list = pickle.load(f)
 
+  return graph_list
   # import pdb; pdb.set_trace()
   for i in range(len(graph_list)):
-    edges_with_selfloops = list(graph_list[i].selfloop_edges())
+    edges_with_selfloops = list(nx.selfloop_edges(graph_list[i]))
     if len(edges_with_selfloops) > 0:
       graph_list[i].remove_edges_from(edges_with_selfloops)
-    if is_real:
+    if is_real and graph_list[1].is_directed():
       graph_list[i] = max(
           nx.connected_component_subgraphs(graph_list[i]), key=len)
       graph_list[i] = nx.convert_node_labels_to_integers(graph_list[i])

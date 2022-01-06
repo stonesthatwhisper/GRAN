@@ -35,8 +35,12 @@ class GRANData(object):
     if self.is_sample_subgraph:
       assert self.num_subgraph_batch > 0
 
+    if not os.path.isdir(self.data_path):
+      data_path = os.path.dirname(self.data_path)
+    else:
+      data_path = self.data_path
     self.save_path = os.path.join(
-        self.data_path, '{}_{}_{}_{}_{}_{}_{}_precompute'.format(
+        data_path, '{}_{}_{}_{}_{}_{}_{}_precompute'.format(
             config.model.name, config.dataset.name, tag, self.block_size,
             self.stride, self.num_canonical_order, self.node_order))
 

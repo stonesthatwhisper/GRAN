@@ -10,10 +10,10 @@ seed: 1234
 dataset:
   loader_name: GRANData
   name: CD
-  data_path: data/cd-pw.pickle
+  data_path: /content/gdrive/MyDrive/data/cd-pw.pickle
   node_order: DFS # k_core/BFS/degree_decent
-  train_ratio: 0.8
-  dev_ratio: 0.2
+  train_ratio: 1
+  dev_ratio: 1
   num_subgraph_batch: 2 # number of subgraphs per mini-batch
   num_fwd_pass: 1
   has_node_feat: false
