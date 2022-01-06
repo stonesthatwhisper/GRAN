@@ -206,6 +206,9 @@ def create_graphs(graph_type, data_dir='data', noise=10.0, seed=1234):
         node_attributes=False,
         graph_labels=True)
 
+  elif graph_type == 'CD':
+    graphs = load_graph_list(data_dir)
+
   num_nodes = [gg.number_of_nodes() for gg in graphs]
   num_edges = [gg.number_of_edges() for gg in graphs]
   print('max # nodes = {} || mean # nodes = {}'.format(max(num_nodes), np.mean(num_nodes)))
