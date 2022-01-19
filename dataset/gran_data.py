@@ -77,7 +77,10 @@ class GRANData(object):
         nx.to_numpy_matrix(G, nodelist=[dd[0] for dd in degree_sequence]))
 
     ### BFS & DFS from largest-degree node
-    CGs = [G.subgraph(c) for c in nx.connected_components(G)]
+    if not G.is_directed():
+        CGs = [G.subgraph(c) for c in nx.connected_components(G)]
+    else:
+        CGs = [G.subgraph(c) for c in nx.weakly_connected_components(G)]
 
     # rank connected componets from large to small size
     CGs = sorted(CGs, key=lambda x: x.number_of_nodes(), reverse=True)
