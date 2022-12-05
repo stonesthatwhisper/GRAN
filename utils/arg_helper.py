@@ -28,6 +28,7 @@ def parse_arguments():
         CRITICAL")
   parser.add_argument('-m', '--comment', help="Experiment comment")
   parser.add_argument('-t', '--test', help="Test model", action='store_true')
+  parser.add_argument('-g', '--generate', help="Test model for a single step, generate", action='store_true')
   args = parser.parse_args()
 
   return args
@@ -35,8 +36,7 @@ def parse_arguments():
 
 def get_config(config_file, exp_dir=None, is_test=False):
   """ Construct and snapshot hyper parameters """
-  # config = edict(yaml.load(open(config_file, 'r'), Loader=yaml.FullLoader))
-  config = edict(yaml.load(open(config_file, 'r')))
+  config = edict(yaml.load(open(config_file, 'r'), Loader=yaml.FullLoader))
 
   # create hyper parameters
   config.run_id = str(os.getpid())
